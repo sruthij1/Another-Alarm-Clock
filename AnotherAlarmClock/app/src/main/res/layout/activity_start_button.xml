@@ -42,6 +42,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="35dp"
         android:text="OK"
+        android:onClick="backToStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
