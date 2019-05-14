@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void alarms(View view){
+        Intent intent = new Intent(MainActivity.this, alarm_times.class);
+        startActivity(intent);
+    }
 }
