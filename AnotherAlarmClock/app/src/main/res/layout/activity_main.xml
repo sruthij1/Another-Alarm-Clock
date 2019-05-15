@@ -7,13 +7,12 @@
     tools:context=".MainActivity">
 
 
-
     <Button
         android:id="@+id/startButton"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="116dp"
         android:text="Start time:"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +23,7 @@
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:text="End time:"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +33,12 @@
         android:id="@+id/InterNum"
         android:layout_width="181dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Time interval:"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/EndButton" />
 
     <Button
@@ -46,17 +46,19 @@
         android:layout_width="387dp"
         android:layout_height="56dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="20dp"
-        android:text="SET ALARM"
+        android:layout_marginTop="24dp"
         android:onClick="alarms"
+        android:text="SET ALARM"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InterNum" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintLeft_toRightOf="@+id/InterNum"
@@ -64,11 +66,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="64dp"
+        android:layout_width="67dp"
         android:layout_height="65dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="48dp"
         android:text="TIME"
+        android:gravity="center"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,9 +80,11 @@
         android:id="@+id/textView2"
         android:layout_width="67dp"
         android:layout_height="65dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="47dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
         android:text="TIME"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
