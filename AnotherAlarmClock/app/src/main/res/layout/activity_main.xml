@@ -7,46 +7,23 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="168dp"
-        android:text="Start time:"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/EndButton"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="End time:"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton" />
-
     <TextView
         android:id="@+id/InterNum"
         android:layout_width="181dp"
         android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:text="Time interval:"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EndButton" />
+        app:layout_constraintTop_toBottomOf="@+id/etChooseTime2" />
 
     <Button
         android:id="@+id/buttonsetalarm"
         android:layout_width="387dp"
         android:layout_height="56dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="96dp"
         android:onClick="alarms"
         android:text="SET ALARM"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,11 +36,12 @@
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintLeft_toRightOf="@+id/InterNum"
-        app:layout_constraintTop_toBottomOf="@+id/EndButton" />
+        app:layout_constraintTop_toBottomOf="@+id/etChooseTime2" />
 
 
     <EditText
@@ -73,10 +51,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="Choose a start time"
-        app:layout_constraintEnd_toEndOf="@+id/startButton"
-        app:layout_constraintHorizontal_bias="0.647"
-        app:layout_constraintStart_toEndOf="@+id/startButton"
-        tools:layout_editor_absoluteY="16dp" />
+
+        tools:layout_editor_absoluteX="-12dp"
+        tools:layout_editor_absoluteY="233dp" />
 
     <EditText
         android:id="@+id/etChooseTime2"
@@ -86,7 +63,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="8dp"
         android:hint="Choose an end time"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
+
         app:layout_constraintTop_toBottomOf="@+id/etChooseTime"
         app:layout_constraintVertical_bias="0.243"
         tools:layout_editor_absoluteX="0dp" />

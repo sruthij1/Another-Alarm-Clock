@@ -19,23 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button startTime = (Button) findViewById(R.id.startButton);
-        startTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent startNewActivity = new Intent(MainActivity.this, startButton.class);
-                startActivity(startNewActivity);
-            }
-        });
-
-        final Button endTime = (Button) findViewById(R.id.EndButton);
-        endTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent startNewActivity = new Intent(MainActivity.this, endButton.class);
-                startActivity(startNewActivity);
-            }
-        });
 
         // Starting new time picker code
         chooseStartTime = findViewById(R.id.etChooseTime);
