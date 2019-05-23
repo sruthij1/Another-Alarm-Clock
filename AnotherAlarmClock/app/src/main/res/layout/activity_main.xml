@@ -6,12 +6,20 @@
     android:layout_height="match_parent">
     tools:context=".MainActivity">
 
+    <TextClock
+        android:id="@+id/nowTime"
+        android:layout_width="85dp"
+        android:layout_height="41dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="256dp"
+        app:layout_constraintBottom_toTopOf="@id/InterNum"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/InterNum"
         android:layout_width="181dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="Time interval:"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +31,7 @@
         android:layout_width="387dp"
         android:layout_height="56dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="12dp"
         android:onClick="alarms"
         android:text="SET ALARM"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +58,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="176dp"
         android:hint="Choose a start time"
-
-        tools:layout_editor_absoluteX="-12dp"
-        tools:layout_editor_absoluteY="233dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/etChooseTime2"
@@ -61,12 +69,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="8dp"
-        android:hint="Choose an end time"
+        android:layout_marginTop="16dp"
 
+        android:hint="Choose an end time"
         app:layout_constraintTop_toBottomOf="@+id/etChooseTime"
-        app:layout_constraintVertical_bias="0.243"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="43dp" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
