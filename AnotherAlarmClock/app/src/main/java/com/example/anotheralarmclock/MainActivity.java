@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
                 int currentMinute = calendar.get(Calendar.MINUTE);
-                Log.d(Integer.toString(currentHour), "startTime");
                 TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
@@ -46,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
                         String amPm;
                         String min =Integer.toString(minutes);
 
-                        if (hourOfDay > 12) {
+                        if (hourOfDay == 0){
+                            hourOfDay = 12;
+                            amPm = " AM";
+                        } else if (hourOfDay == 12){
+                            amPm = " PM";
+                        } else if (hourOfDay > 12) {
                             hourOfDay = hourOfDay - 12;
                             amPm = " PM";
                         } else {
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
                         chooseStartTime.setText(start);
                         final boolean check = nowTime.getText().toString().equals(start);
+                        final String a = nowTime.getText().toString();
 
                         final Ringtone sound = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
 
@@ -71,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
                             public void run(){
                                 if (check == true){
                                     sound.play();
-                                } else{
-                                    sound.stop();
+                                    if (a != nowTime.getText().toString()){
+                                        sound.stop();
+                                    }
                                 }
                             }
-
                         } ,0, 1000);
                     }
                 },  currentHour, currentMinute, false);
@@ -88,20 +93,54 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-                int currentMinute = calendar.get(Calendar.MINUTE);
+                int currenthour = calendar.get(Calendar.HOUR_OF_DAY);
+                int currentminute = calendar.get(Calendar.MINUTE);
                 TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-                        String amPm;
-                        if (hourOfDay >= 12) {
-                            amPm = "PM";
-                        } else {
-                            amPm = "AM";
+                            String end = "";
+                            String amPm;
+                            String min =Integer.toString(minutes);
+
+                            if (hourOfDay == 0){
+                                hourOfDay = 12;
+                                amPm = " AM";
+                            } else if (hourOfDay == 12){
+                                amPm = " PM";
+                            } else if (hourOfDay > 12) {
+                                hourOfDay = hourOfDay - 12;
+                                amPm = " PM";
+                            } else {
+                                amPm = " AM";
+                            }
+
+                            if (Integer.valueOf(min) < 10){
+                                end = Integer.toString(hourOfDay).concat(":").concat("0" + min).concat(amPm);
+                            } else {
+                                end = Integer.toString(hourOfDay).concat(":").concat(min).concat(amPm);
+                            }
+
+                            //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
+                            chooseEndTime.setText(end);
+                            final boolean check = nowTime.getText().toString().equals(end);
+                            final String a = nowTime.getText().toString();
+
+                            final Ringtone sound = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+
+                            Timer t = new Timer();
+                            t.scheduleAtFixedRate(new TimerTask() {
+
+                                public void run(){
+                                    if (check == true){
+                                        sound.play();
+                                        if (a != nowTime.getText().toString()){
+                                            sound.stop();
+                                        }
+                                    }
+                                }
+                            } ,0, 1000);
                         }
-                        chooseEndTime.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
-                    }
-                }, currentHour, currentMinute, false);
+                }, currenthour, currentminute, false);
                 timePickerDialog.show();
             }
         });
