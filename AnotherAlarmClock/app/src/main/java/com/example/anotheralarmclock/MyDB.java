@@ -54,6 +54,12 @@ public class MyDB extends SQLiteOpenHelper {
         Toast.makeText(ctx, "INSERTION IS SUCCESSFUL", Toast.LENGTH_LONG).show();
     }
 
+    public Cursor returnCurs() {
+        db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT ALARM_TIME FROM " + TABLE_NAME+";", null);
+        return c;
+    }
+
     public void view() {
         db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT ALARM_TIME FROM " + TABLE_NAME+";", null);
@@ -63,4 +69,6 @@ public class MyDB extends SQLiteOpenHelper {
         }
         Toast.makeText(ctx, time, Toast.LENGTH_LONG).show();
     }
+
+
 }
