@@ -22,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
     EditText chooseStartTime, chooseEndTime;
     TextClock nowTime;
 
+    MyDB db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new MyDB(this, MyDB.DB_NAME, null, 1);
         //nowTime from the TextClock
         nowTime = findViewById(R.id.nowTime);
 
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
                         chooseStartTime.setText(start);
+                        db.insert(start);
                         final boolean check = nowTime.getText().toString().equals(start);
                         final String a = nowTime.getText().toString();
 
@@ -122,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
                             //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
                             chooseEndTime.setText(end);
+                            db.insert(end);
                             final boolean check = nowTime.getText().toString().equals(end);
                             final String a = nowTime.getText().toString();
 
@@ -146,8 +151,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void alarms(View view){
-        Intent intent = new Intent(MainActivity.this, alarm_times.class);
-        startActivity(intent);
+    public void ringingTimes(View view){
+        //Intent intent = new Intent(MainActivity.this, alarm_times.class);
+        //startActivity(intent);
+
+        db.view();
     }
 }
