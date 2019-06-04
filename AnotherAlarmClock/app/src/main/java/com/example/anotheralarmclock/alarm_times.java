@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.database.Cursor;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatDelegate;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,6 +19,13 @@ public class alarm_times extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(Settings.night == true)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         setContentView(R.layout.activity_alarm_times);
         // Create pointers for Dbhelper and List View
         listV = (ListView) findViewById(R.id.alarmListView);

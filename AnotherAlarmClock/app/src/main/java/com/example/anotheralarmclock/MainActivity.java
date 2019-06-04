@@ -245,6 +245,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_two:
+                Intent intent2 = new Intent(MainActivity.this, aboutUs.class);
+                startActivity(intent2);
                 return true;
 
 

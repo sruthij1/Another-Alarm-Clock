@@ -1,14 +1,21 @@
 package com.example.anotheralarmclock;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-public class Settings extends AppCompatActivity {
+import java.util.Calendar;
 
-    public static boolean night = false;
+public class Notification extends AppCompatActivity {
+
+    EditText chooseTime = findViewById(R.id.etChooseTime3);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,26 +27,17 @@ public class Settings extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_notification);
+
+
+
     }
 
-    public void setLightMode(View view) {
-        night = false;
-        Intent intent = new Intent(Settings.this, MainActivity.class);
+    public void toMain(View view) {
+        Intent intent = new Intent(Notification.this, MainActivity.class);
         startActivity(intent);
-
+        //Toast.makeText(Notification.this, "Daily alarm set for 9:00 AM", Toast.LENGTH_SHORT).show();
     }
 
 
-    public void setNightMode(View view) {
-        night = true;
-        Intent intent = new Intent(Settings.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void whatTime(View view) {
-        Intent intent = new Intent(Settings.this, Notification.class);
-        startActivity(intent);
-    }
 }

@@ -6,40 +6,24 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 
-public class Settings extends AppCompatActivity {
-
-    public static boolean night = false;
+public class aboutUs extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //check for night mode
         if(Settings.night == true)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_about_us);
     }
 
-    public void setLightMode(View view) {
-        night = false;
-        Intent intent = new Intent(Settings.this, MainActivity.class);
-        startActivity(intent);
-
-    }
-
-
-    public void setNightMode(View view) {
-        night = true;
-        Intent intent = new Intent(Settings.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void whatTime(View view) {
-        Intent intent = new Intent(Settings.this, Notification.class);
+    public void toMain(View view) {
+        Intent intent = new Intent(aboutUs.this, MainActivity.class);
         startActivity(intent);
     }
 }
