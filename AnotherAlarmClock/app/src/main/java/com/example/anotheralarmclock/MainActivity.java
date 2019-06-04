@@ -11,9 +11,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextClock;
 import android.widget.TimePicker;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.view.Menu;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +35,27 @@ public class MainActivity extends AppCompatActivity {
         //nowTime from the TextClock
         nowTime = findViewById(R.id.nowTime);
         timeInt = findViewById(R.id.editText);
+
+        //final boolean check1 = nowTime.getText().toString().equals(ring());
+
+        //final String s = nowTime.getText().toString();
+
+        final Ringtone sound1 = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+
+        Timer t1 = new Timer();
+        t1.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+                ArrayList a = ring();
+                if (a.size() != 0) {
+                    if (nowTime.getText().toString().equals(a.get(0)) || nowTime.getText().toString().equals(a.get(1)) || nowTime.getText().toString().equals(a.get(2))) {
+                        sound1.play();
+                    } else {
+                        sound1.stop();
+                    }
+                }
+            }
+        }, 0, 1000);
 
         // Starting new time picker code
             chooseStartTime = findViewById(R.id.etChooseTime);
@@ -141,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
                 amPm = change.substring(5, 8);
             } else {
                 hour = Integer.parseInt(change.substring(0,1));
-                Log.d(Integer.toString(hour), "INSIDE");
                 min = Integer.parseInt(change.substring(2,4));
                 amPm = change.substring(4, 7);
             }
@@ -176,15 +201,22 @@ public class MainActivity extends AppCompatActivity {
         db.view();
     }
 
-    public void ring(View view){
+    public ArrayList<String> ring(){
 
         Cursor c = db.returnCurs();
+        ArrayList a = new ArrayList();
+
         while(c.moveToNext()){
 
             String time = c.getString(0);
+            a.add(time);
+
+            /*Log.d(time, "hello1");
+            break;
 
             if (time.equals(nowTime.getText().toString())){
 
+                Log.d("hello2", "hello2");
                 final boolean check1 = nowTime.getText().toString().equals(time);
 
                 final String s = nowTime.getText().toString();
@@ -199,15 +231,25 @@ public class MainActivity extends AppCompatActivity {
                             sound1.play();
                             if (s != nowTime.getText().toString()) {
                                 sound1.stop();
-                                Log.d("stop", "stopping");
+                                Log.d("hello3", "hello3");
                             }
                         }
                     }
                 }, 0, 1000);
 
-                Log.d("next", "next");
+                Log.d("hello4", "hello4");
                 continue;
-            }
+            }*/
         }
+
+        return a;
+    }
+
+    //creates main appbar (add to all)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
+
