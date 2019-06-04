@@ -14,6 +14,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.view.Menu;
 
 
 
@@ -211,5 +212,12 @@ public class MainActivity extends AppCompatActivity {
                 continue;
             }
         }
+    }
+
+    //creates main appbar (add to all)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
