@@ -8,13 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.content.Intent;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextClock;
-import android.widget.TextView;
 import android.widget.TimePicker;
-
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     EditText chooseStartTime, chooseEndTime, timeInt;
     TextClock nowTime;
-
     MyDB db;
 
     @Override
@@ -69,26 +64,7 @@ public class MainActivity extends AppCompatActivity {
                             start = Integer.toString(hourOfDay).concat(":").concat(min).concat(amPm);
                         }
 
-                        //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
                         chooseStartTime.setText(start);
-                        db.insert(start);
-                        /*final boolean check = nowTime.getText().toString().equals(start);
-                        final String a = nowTime.getText().toString();
-
-                        final Ringtone sound = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-
-                        Timer t = new Timer();
-                        t.scheduleAtFixedRate(new TimerTask() {
-
-                            public void run(){
-                                if (check == true){
-                                    sound.play();
-                                    if (a != nowTime.getText().toString()){
-                                        sound.stop();
-                                    }
-                                }
-                            }
-                        } ,0, 1000);*/
                     }
                 }, currenthour, currentminute, false);
                 timePickerDialog.show();
@@ -129,33 +105,8 @@ public class MainActivity extends AppCompatActivity {
                             end = Integer.toString(hourOfDay).concat(":").concat(min).concat(amPm);
                         }
 
-                        //start = String.format("%02d:%02d", hourOfDay, minutes) + amPm;
                         chooseEndTime.setText(end);
-                        //db.insert(end);
-                        Cursor c = db.returnCurs();
-                        String time = "";
 
-                        /*while(c.moveToNext()) {
-                            time = c.getString(0);
-                            final boolean check = nowTime.getText().toString().equals(time);
-
-                            final String a = nowTime.getText().toString();
-
-                            final Ringtone sound = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-
-                            Timer t = new Timer();
-                            t.scheduleAtFixedRate(new TimerTask() {
-
-                                public void run() {
-                                    if (check == true) {
-                                        sound.play();
-                                        if (a != nowTime.getText().toString()) {
-                                            sound.stop();
-                                        }
-                                    }
-                                }
-                            }, 0, 1000);
-                        }*/
                     }
                 },  currentHour, currentMinute, false);
                 timePickerDialog.show();
@@ -167,25 +118,6 @@ public class MainActivity extends AppCompatActivity {
     public void ringingTimes(View view){
         //Intent intent = new Intent(MainActivity.this, alarm_times.class);
         //startActivity(intent);
-        // Code to make alarm ring at start time
-        final boolean check = nowTime.getText().toString().equals(chooseStartTime.getText().toString());
-
-        final String a = nowTime.getText().toString();
-
-        final Ringtone sound = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
-
-            public void run() {
-                if (check == true) {
-                    sound.play();
-                    if (a != nowTime.getText().toString()) {
-                        sound.stop();
-                    }
-                }
-            }
-        }, 0, 1000);
 
         // Code to get all interval times and make alarm ring at these interval times
         String end = chooseEndTime.getText().toString();
@@ -194,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
         int timeInterval = Integer.valueOf(timeInter);
 
         while (!change.equals(end)){
+
+            // Insert the start time, and then add the interval times
+            if (change.equals(chooseStartTime.getText().toString())){
+                db.insert(change);
+            }
+
             int hour;
             int min;
             String amPm;
@@ -209,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             min = min + timeInterval;
+
             if (min == 60){
                 min = 0;
                 hour = hour + 1;
@@ -230,29 +169,45 @@ public class MainActivity extends AppCompatActivity {
                 db.insert(change);
             }
 
-            final boolean check1 = nowTime.getText().toString().equals(change);
-
-            final String s = nowTime.getText().toString();
-
-            final Ringtone sound1 = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-
-            Timer t1 = new Timer();
-            t1.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-                    if (check1 == true) {
-                        sound1.play();
-                        if (s != nowTime.getText().toString()) {
-                            sound1.stop();
-                        }
-                    }
-                }
-            }, 0, 1000);
-
             if (change.equals(end)){
                 break;
             }
         }
         db.view();
+    }
+
+    public void ring(View view){
+
+        Cursor c = db.returnCurs();
+        while(c.moveToNext()){
+
+            String time = c.getString(0);
+
+            if (time.equals(nowTime.getText().toString())){
+
+                final boolean check1 = nowTime.getText().toString().equals(time);
+
+                final String s = nowTime.getText().toString();
+
+                final Ringtone sound1 = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+
+                Timer t1 = new Timer();
+                t1.scheduleAtFixedRate(new TimerTask() {
+
+                    public void run() {
+                        if (check1 == true) {
+                            sound1.play();
+                            if (s != nowTime.getText().toString()) {
+                                sound1.stop();
+                                Log.d("stop", "stopping");
+                            }
+                        }
+                    }
+                }, 0, 1000);
+
+                Log.d("next", "next");
+                continue;
+            }
+        }
     }
 }
