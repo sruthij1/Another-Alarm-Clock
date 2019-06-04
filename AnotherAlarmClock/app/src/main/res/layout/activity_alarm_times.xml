@@ -7,68 +7,17 @@
     tools:context=".alarm_times">
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="308dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:text="9:00 AM"
-        android:textSize="36sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:id="@+id/viewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|center"
+        android:text="Alarms"
+        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="308dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:text="8:45 AM"
-        android:textSize="36sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="308dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:text="8:30 AM"
-        android:textSize="36sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="308dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="32dp"
-        android:text="8:15 AM"
-        android:textSize="36sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="308dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="8:00 AM"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ListView
+        android:id="@+id/alarmListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 

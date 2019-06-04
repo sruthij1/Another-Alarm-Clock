@@ -188,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         db.view();
+        Intent intent = new Intent(MainActivity.this, alarm_times.class);
+        startActivity(intent);
     }
 
     public void ring(View view){
