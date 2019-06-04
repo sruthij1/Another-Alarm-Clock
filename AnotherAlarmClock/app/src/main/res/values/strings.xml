@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">AnotherAlarmClock</string>
-    <string name="ringer">Set Ringer</string>
-    <string name="volume">Set Ringer Volume</string>
-    <string name="mode">Set Mode</string>
-    <string name="about">About</string>
 </resources>
