@@ -1,6 +1,7 @@
 package com.example.anotheralarmclock;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -177,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         db.view();
+        Intent intent = new Intent(MainActivity.this, alarm_times.class);
+        startActivity(intent);
     }
 
     public void ring(View view){
