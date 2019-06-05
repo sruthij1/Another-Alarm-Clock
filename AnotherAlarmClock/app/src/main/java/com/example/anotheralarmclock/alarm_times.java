@@ -42,4 +42,6 @@ public class alarm_times extends AppCompatActivity {
         ListAdapter alarmAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alarmListData);
         listV.setAdapter(alarmAdapter);
     }
+
+
 }

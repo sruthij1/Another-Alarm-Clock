@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextClock;
 import android.widget.TimePicker;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     EditText chooseStartTime, chooseEndTime, timeInt;
     TextClock nowTime;
     MyDB db;
-    Cursor c;
 
     //public boolean night = true;
 
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                 sound1.stop();
                             }
                         }else if (a.size() == 5){
-                           String now = nowTime.getText().toString();
+                            String now = nowTime.getText().toString();
                             if (now.equals(a.get(0)) || now.equals(a.get(1)) || now.equals(a.get(2)) || now.equals(a.get(3)) || now.equals(a.get(4)) ) {
                                 Log.d("hey1", "hey1");
                                 sound1.play();
@@ -98,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, 0, 1000);
-
-
 
         // Starting new time picker code
             chooseStartTime = findViewById(R.id.etChooseTime);
@@ -247,44 +243,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, alarm_times.class);
         startActivity(intent);
     }
-
-    /*public ArrayList<String> ring(){
-
-        ArrayList a = new ArrayList();
-        c= db.returnCurs();
-
-        while(c.moveToNext()){
-
-            String time = c.getString(0);
-            Log.d(time, "time");
-            a.add(time);
-            if (time.equals(nowTime.getText().toString())){
-
-                final boolean check1 = nowTime.getText().toString().equals(time);
-
-                final String s = nowTime.getText().toString();
-
-                final Ringtone sound1 = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-
-                Timer t1 = new Timer();
-                t1.scheduleAtFixedRate(new TimerTask() {
-
-                    public void run() {
-                        if (check1 == true) {
-                            sound1.play();
-                            if (s != nowTime.getText().toString()) {
-                                sound1.stop();
-                                Log.d("stop", "stopping");
-                            }
-                        }
-                    }
-                }, 0, 1000);
-
-            }
-        }
-        Log.d(String.valueOf(a.size()), "aSize");
-        return a;
-    }*/
 
     //creates main appbar (add to all)
     @Override
