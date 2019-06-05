@@ -1,17 +1,21 @@
 package com.example.anotheralarmclock;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextClock;
 import android.widget.TimePicker;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
@@ -25,10 +29,19 @@ public class MainActivity extends AppCompatActivity {
     EditText chooseStartTime, chooseEndTime, timeInt;
     TextClock nowTime;
     MyDB db;
+    Cursor c;
+
+    //public boolean night = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //checks if user has selected night mode
+        if(Settings.night == true)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         setContentView(R.layout.activity_main);
 
         db = new MyDB(this, MyDB.DB_NAME, null, 1);
@@ -36,26 +49,57 @@ public class MainActivity extends AppCompatActivity {
         nowTime = findViewById(R.id.nowTime);
         timeInt = findViewById(R.id.editText);
 
-        //final boolean check1 = nowTime.getText().toString().equals(ring());
-
-        //final String s = nowTime.getText().toString();
-
         final Ringtone sound1 = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
 
         Timer t1 = new Timer();
         t1.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                ArrayList a = ring();
-                if (a.size() != 0) {
-                    if (nowTime.getText().toString().equals(a.get(0)) || nowTime.getText().toString().equals(a.get(1)) || nowTime.getText().toString().equals(a.get(2))) {
-                        sound1.play();
-                    } else {
-                        sound1.stop();
+                ArrayList a = alarm_times.alarmListData;
+                if (alarm_times.alarmListData != null) {
+                    if (a.size() != 0) {
+                        //int len = a.size();
+                        //Log.d(String.valueOf(a.size()), "len");
+
+                        if (a.size() == 3) {
+                            String now = nowTime.getText().toString();
+                            if (now.equals(a.get(0)) || now.equals(a.get(1)) || now.equals(a.get(2))) {
+                                Log.d("hey1", "hey1");
+                                sound1.play();
+                            } else {
+                                sound1.stop();
+                            }
+                        } else if (a.size() == 4) {
+                            String now = nowTime.getText().toString();
+                            if (now.equals(a.get(0)) || now.equals(a.get(1)) || now.equals(a.get(2)) || now.equals(a.get(3))) {
+                                Log.d("hey1", "hey1");
+                                sound1.play();
+                            } else {
+                                sound1.stop();
+                            }
+                        }else if (a.size() == 5){
+                           String now = nowTime.getText().toString();
+                            if (now.equals(a.get(0)) || now.equals(a.get(1)) || now.equals(a.get(2)) || now.equals(a.get(3)) || now.equals(a.get(4)) ) {
+                                Log.d("hey1", "hey1");
+                                sound1.play();
+                            } else {
+                                sound1.stop();
+                            }
+                        } else {
+                            String now = nowTime.getText().toString();
+                            if (now.equals(a.get(0)) || now.equals(a.get(1)) || now.equals(a.get(2)) || now.equals(a.get(3)) || now.equals(a.get(4)) || now.equals(a.get(5))) {
+                                Log.d("hey1", "hey1");
+                                sound1.play();
+                            } else {
+                                sound1.stop();
+                            }
+                        }
                     }
                 }
             }
         }, 0, 1000);
+
+
 
         // Starting new time picker code
             chooseStartTime = findViewById(R.id.etChooseTime);
@@ -167,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 amPm = change.substring(5, 8);
             } else {
                 hour = Integer.parseInt(change.substring(0,1));
+                Log.d(Integer.toString(hour), "INSIDE");
                 min = Integer.parseInt(change.substring(2,4));
                 amPm = change.substring(4, 7);
             }
@@ -199,24 +244,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         db.view();
+        Intent intent = new Intent(MainActivity.this, alarm_times.class);
+        startActivity(intent);
     }
 
-    public ArrayList<String> ring(){
+    /*public ArrayList<String> ring(){
 
-        Cursor c = db.returnCurs();
         ArrayList a = new ArrayList();
+        c= db.returnCurs();
 
         while(c.moveToNext()){
 
             String time = c.getString(0);
+            Log.d(time, "time");
             a.add(time);
-
-            /*Log.d(time, "hello1");
-            break;
-
             if (time.equals(nowTime.getText().toString())){
 
-                Log.d("hello2", "hello2");
                 final boolean check1 = nowTime.getText().toString().equals(time);
 
                 final String s = nowTime.getText().toString();
@@ -231,19 +274,17 @@ public class MainActivity extends AppCompatActivity {
                             sound1.play();
                             if (s != nowTime.getText().toString()) {
                                 sound1.stop();
-                                Log.d("hello3", "hello3");
+                                Log.d("stop", "stopping");
                             }
                         }
                     }
                 }, 0, 1000);
 
-                Log.d("hello4", "hello4");
-                continue;
-            }*/
+            }
         }
-
+        Log.d(String.valueOf(a.size()), "aSize");
         return a;
-    }
+    }*/
 
     //creates main appbar (add to all)
     @Override
@@ -251,5 +292,25 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.appbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-}
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Determine which menu option was chosen
+        switch (item.getItemId()) {
+            case R.id.action_one:
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_two:
+                Intent intent2 = new Intent(MainActivity.this, aboutUs.class);
+                startActivity(intent2);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}

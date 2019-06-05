@@ -3,19 +3,13 @@
 
 
     <item android:id="@+id/action_one"
-        android:title="@string/ringer"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/action_two"
-        android:title="@string/volume"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/action_three"
         android:title="@string/mode"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/action_four"
+    <item android:id="@+id/action_two"
         android:title="@string/about"
         app:showAsAction="never"/>
+
+
 
 </menu>

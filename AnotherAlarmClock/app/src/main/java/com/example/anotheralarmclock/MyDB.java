@@ -51,7 +51,7 @@ public class MyDB extends SQLiteOpenHelper {
         ContentValues cv =new ContentValues();
         cv.put("ALARM_TIME", alarmtime);
         db.insert(TABLE_NAME, null, cv);
-        Toast.makeText(ctx, "INSERTION IS SUCCESSFUL", Toast.LENGTH_LONG).show();
+        Toast.makeText(ctx, "Alarms Set", Toast.LENGTH_LONG).show();
     }
 
     public Cursor returnCurs() {
