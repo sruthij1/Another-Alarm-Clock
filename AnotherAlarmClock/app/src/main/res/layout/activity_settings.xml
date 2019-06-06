@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/settings"
     tools:context=".Settings">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="156dp"
         android:text="SETTINGS"
+        android:textColor="#ffffff"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +28,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="64dp"
         android:text="Set Light Mode"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings" />
@@ -37,6 +40,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="32dp"
         android:text="Set Night Mode"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lightMode" />
@@ -48,6 +52,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="32dp"
         android:text="Notifications"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nightMode" />

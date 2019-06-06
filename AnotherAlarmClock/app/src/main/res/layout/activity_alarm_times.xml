@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background = "@drawable/sunrise"
     tools:context=".alarm_times">
 
     <TextView
@@ -12,7 +13,9 @@
         android:layout_height="wrap_content"
         android:gravity="top|center"
         android:text="Alarms"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ListView
         android:id="@+id/alarmListView"
