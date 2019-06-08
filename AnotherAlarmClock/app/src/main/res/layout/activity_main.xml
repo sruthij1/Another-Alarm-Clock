@@ -17,11 +17,26 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
+        android:layout_width="406dp"
+        android:layout_height="84dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:elegantTextHeight="true"
+        android:text="AnotherAlarmClock"
+        android:textColor="#FF1493"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="47dp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nowTime" />
+
+    <TextView
         android:id="@+id/InterNum"
         android:layout_width="181dp"
         android:layout_height="55dp"
         android:layout_marginTop="32dp"
         android:text="Time interval:"
+        android:textColor="#800080"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +50,7 @@
         android:layout_marginTop="12dp"
         android:onClick="ringingTimes"
         android:text="Set Alarms"
+        android:textColor="#800080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
