@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:gravity="top|center"
         android:text="Alarms"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:textSize="36sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/alarmListView"

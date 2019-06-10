@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 public class Notification extends AppCompatActivity {
 
-    EditText chooseTime = findViewById(R.id.etChooseTime3);
+
 
 
     @Override
