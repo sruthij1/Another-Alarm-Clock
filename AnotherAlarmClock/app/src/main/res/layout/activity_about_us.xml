@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background = "@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".aboutUs">
@@ -11,13 +11,14 @@
         android:id="@+id/textView2"
         android:layout_width="322dp"
         android:layout_height="246dp"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="64dp"
         android:gravity="center"
         android:text="Hello from the creators of AnotherAlarmClock! Our goal was to create a simple, easy-to-use alarm that would help make mornings easier for people who need multiple alarms to wake. Thank you for your support!"
-        android:textColor="#31B2FF"
         android:textSize="24sp"
+        android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +26,6 @@
         android:id="@+id/button"
         android:layout_width="191dp"
         android:layout_height="57dp"
-        android:layout_marginTop="61dp"
         android:onClick="toMain"
         android:text="confirm"
         app:layout_constraintEnd_toEndOf="parent"
